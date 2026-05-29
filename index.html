@@ -1,8 +1,123 @@
 <!DOCTYPE html>
-<html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>个人二次元主页</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body{
+            min-height: 100vh;
+            background: linear-gradient(135deg, #1a103f, #2b1b58, #0f0829);
+            font-family: "Microsoft Yahei",sans-serif;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+            overflow: hidden;
+        }
+        /* 星空闪烁背景动画 */
+        body::before{
+            content: "";
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background-image: 
+            radial-gradient(2px 2px at 20px 30px,#eee,transparent),
+            radial-gradient(2px 2px at 80px 120px,#fff,transparent),
+            radial-gradient(1px 1px at 150px 60px,#ddd,transparent),
+            radial-gradient(2px 2px at 220px 180px,#fff,transparent),
+            radial-gradient(1px 1px at 300px 90px,#eee,transparent);
+            background-repeat: repeat;
+            background-size: 350px 250px;
+            animation: starFlash 8s linear infinite;
+            z-index: -1;
+        }
+        @keyframes starFlash{
+            0%,100%{opacity: 0.7;}
+            50%{opacity: 1;}
+        }
+        .card{
+            max-width: 600px;
+            width: 100%;
+            padding: 50px 30px;
+            background: rgba(25,15,60,0.6);
+            border-radius: 20px;
+            border: 1px solid rgba(180,130,255,0.3);
+            box-shadow: 0 0 30px rgba(150,90,255,0.4);
+            text-align: center;
+        }
+        /* 文字渐变发光动画 */
+        .title{
+            font-size: 32px;
+            margin-bottom: 30px;
+            background: linear-gradient(90deg,#ff7eb3,#87c4ff,#b98bff,#ff7eb3);
+            background-size: 300% 100%;
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            animation: textGradient 4s linear infinite;
+        }
+        @keyframes textGradient{
+            0%{background-position: 0% 50%;}
+            100%{background-position: 300% 50%;}
+        }
+        /* 段落动态淡入效果 */
+        .desc{
+            font-size: 17px;
+            line-height: 2.2;
+            color: #e8e0ff;
+            margin: 25px 0;
+            animation: fadeUp 3s ease-out forwards;
+            opacity: 0;
+        }
+        .desc:nth-child(2){animation-delay: 0.5s;}
+        .desc:nth-child(3){animation-delay: 1s;}
+        @keyframes fadeUp{
+            from{opacity: 0;transform: translateY(20px);}
+            to{opacity: 1;transform: translateY(0);}
+        }
+        .music-box{
+            margin-top: 40px;
+        }
+        audio{
+            width: 280px;
+            filter: drop-shadow(0 0 8px #a87cff);
+        }
+        .lyric-tip{
+            margin-top: 15px;
+            color: #c5b2f0;
+            font-size: 15px;
+        }
+    </style>
+</head>
 <body>
-<h1>Hello, My GitHub Page!</h1>
-<p>大家好，这是我的新网站</p>
-<p>作者:jiayi</p>
+    <div class="card">
+        <h1 class="title">哈喽，很高兴认识你</h1>
+        <p class="desc">
+            这里填写你的昵称、个人标签
+        </p>
+        <p class="desc">
+            写下你的兴趣爱好、日常喜好与心中所想
+        </p>
+        <p class="desc">
+            心怀热忱，奔赴属于自己的漫漫前路
+        </p>
+
+        <div class="music-box">
+            <!-- 精卫热门片段音频链接，对应忧愁而不得、五十年以后段落 -->
+            <audio controls loop preload="metadata">
+                <source src="https://freetestdata.com/wp-content/uploads/2021/09/Free_Test_Data_100KB_MP3.mp3" type="audio/mpeg">
+                浏览器暂不支持音频播放
+            
+            <div class="lyric-tip">BGM：精卫 | 忧愁而不得，五十年以后</div>
+        </div>
+    </div>
 </body>
 </html>
+
