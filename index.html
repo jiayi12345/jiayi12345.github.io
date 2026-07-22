@@ -3,121 +3,75 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>你好我是jiayi</title>
+    <title>我们的小星球</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/font-awesome@4.7.0/css/font-awesome.min.css">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        lovepink: '#ff7b9c',
+                        lovedark: '#22182c'
+                    }
+                }
+            }
+        }
+    </script>
     <style>
-        *{
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
+        @keyframes heartbeat {
+            0%,100%{transform: scale(1)}
+            50%{transform: scale(1.08)}
+        }
+        .heart{
+            animation: heartbeat 1.8s infinite ease-in-out;
         }
         body{
+            background: linear-gradient(135deg, #2c1f3b, #402847);
             min-height: 100vh;
-            background: linear-gradient(135deg, #1a103f, #2b1b58, #0f0829);
-            font-family: "Microsoft Yahei",sans-serif;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            padding: 20px;
-            overflow: hidden;
-        }
-        /* 星空闪烁背景动画 */
-        body::before{
-            content: "";
-            position: absolute;
-            width: 100%;
-            height: 100%;
-            background-image: 
-            radial-gradient(2px 2px at 20px 30px,#eee,transparent),
-            radial-gradient(2px 2px at 80px 120px,#fff,transparent),
-            radial-gradient(1px 1px at 150px 60px,#ddd,transparent),
-            radial-gradient(2px 2px at 220px 180px,#fff,transparent),
-            radial-gradient(1px 1px at 300px 90px,#eee,transparent);
-            background-repeat: repeat;
-            background-size: 350px 250px;
-            animation: starFlash 8s linear infinite;
-            z-index: -1;
-        }
-        @keyframes starFlash{
-            0%,100%{opacity: 0.7;}
-            50%{opacity: 1;}
-        }
-        .card{
-            max-width: 600px;
-            width: 100%;
-            padding: 50px 30px;
-            background: rgba(25,15,60,0.6);
-            border-radius: 20px;
-            border: 1px solid rgba(180,130,255,0.3);
-            box-shadow: 0 0 30px rgba(150,90,255,0.4);
-            text-align: center;
-        }
-        /* 文字渐变发光动画 */
-        .title{
-            font-size: 32px;
-            margin-bottom: 30px;
-            background: linear-gradient(90deg,#ff7eb3,#87c4ff,#b98bff,#ff7eb3);
-            background-size: 300% 100%;
-            -webkit-background-clip: text;
-            background-clip: text;
-            color: transparent;
-            animation: textGradient 4s linear infinite;
-        }
-        @keyframes textGradient{
-            0%{background-position: 0% 50%;}
-            100%{background-position: 300% 50%;}
-        }
-        /* 段落动态淡入效果 */
-        .desc{
-            font-size: 17px;
-            line-height: 2.2;
-            color: #e8e0ff;
-            margin: 25px 0;
-            animation: fadeUp 3s ease-out forwards;
-            opacity: 0;
-        }
-        .desc:nth-child(2){animation-delay: 0.5s;}
-        .desc:nth-child(3){animation-delay: 1s;}
-        @keyframes fadeUp{
-            from{opacity: 0;transform: translateY(20px);}
-            to{opacity: 1;transform: translateY(0);}
-        }
-        .music-box{
-            margin-top: 40px;
-        }
-        audio{
-            width: 280px;
-            filter: drop-shadow(0 0 8px #a87cff);
-        }
-        .lyric-tip{
-            margin-top: 15px;
-            color: #c5b2f0;
-            font-size: 15px;
         }
     </style>
 </head>
-<body>
-    <div class="card">
-        <h1 class="title">哈喽，很高兴认识你</h1>
-        <p class="desc">
-            我是鸡毛
-        </p>
-        <p class="desc">
-            只要来日可期，今天就值得欣喜
-        </p>
-        <p class="desc">
-            你被我盯上了
-        </p>
+<body class="flex flex-col items-center justify-center text-white px-4 py-10">
+    <div class="text-center max-w-xl">
+        <h1 class="text-3xl md:text-4xl mb-4">
+            <i class="fa fa-heart text-lovepink heart"></i>
+            我们在一起
+            <i class="fa fa-heart text-lovepink heart"></i>
+        </h1>
+        <p class="text-lg opacity-80 mb-8">始于 2026年04月05日</p>
 
-        <div class="music-box">
-            <!-- 精卫热门片段音频链接，对应忧愁而不得、五十年以后段落 -->
-            <audio controls loop preload="metadata">
-                <source src="https://freetestdata.com/wp-content/uploads/2021/09/Free_Test_Data_100KB_MP3.mp3" type="audio/mpeg">
-                浏览器暂不支持音频播放
-            
-            <div class="lyric-tip">BGM：精卫 | 忧愁而不得，五十年以后</div>
+        <div class="bg-white/10 rounded-2xl p-6 backdrop-blur-sm shadow-xl">
+            <div id="time-box" class="text-2xl md:text-3xl font-medium leading-relaxed">
+                加载中...
+            </div>
+        </div>
+
+        <div class="mt-10 space-y-3 opacity-90">
+            <p>故事还在继续，岁岁年年✨</p>
+            <p class="text-sm">想和你走过无数个朝夕</p>
         </div>
     </div>
+
+<script>
+// ==========【这里可以修改】恋爱起始时间 ==========
+const startDate = new Date("2026-04-05 00:00:00");
+// ===============================================
+
+function updateTime(){
+    const now = new Date();
+    const diff = now - startDate;
+
+    const day = Math.floor(diff / (1000*60*60*24));
+    const hour = Math.floor((diff % (1000*60*60*24)) / (1000*60*60));
+    const min = Math.floor((diff % (1000*60*60)) / (1000*60));
+    const sec = Math.floor((diff % (1000*60)) / 1000);
+
+    document.getElementById("time-box").innerHTML =
+        `${day} 天 ${hour} 时 ${min} 分 ${sec} 秒`;
+}
+updateTime();
+setInterval(updateTime,1000);
+</script>
 </body>
 </html>
-
